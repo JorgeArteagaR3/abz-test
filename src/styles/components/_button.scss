@@ -1,0 +1,13 @@
+.btn-container{
+ display: flex;
+ gap: 10px;
+}
+.btn{
+    background: var(--primary);
+    border: none;
+    font-size: 1.6rem;
+    height: 34px;
+    width: 100px;
+    border-radius: 8rem;
+    cursor: pointer;
+}

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+:root{
+    --primary: #F4E041;
+    --secondary: #00BDD3;
+}
+
+body{
+    background: #F8F8F8;
+    font-family: 'Nunito', sans-serif;
+
+}
+.title{
+    font-size: 4rem;
+}
+
+// Components
+@import "./components/_navbar";
+@import "./components/hero";
+@import "./components//getsection";
+@import "./components/user";
+//UI
+@import "./components/button";
+
+//Screens
