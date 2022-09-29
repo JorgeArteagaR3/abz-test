@@ -48,6 +48,7 @@ const GetSection = () => {
         ))}
       </article>
       <button
+        children
         onClick={() => {
           setPage((page += 1));
         }}
