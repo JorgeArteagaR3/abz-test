@@ -1,0 +1,85 @@
+.post-container {
+    padding: 140px 16px 0 16px;
+    h2 {
+        margin-bottom: 50px;
+    }
+    form {
+        .post-container__data {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        span {
+            font-size: 1.2rem;
+            text-align: left;
+            width: 100%;
+            display: block;
+            padding-left: 16px;
+            margin-top: 5px;
+            color: #7e7e7e;
+            margin-bottom: 43px;
+        }
+    }
+    p {
+        font-size: 1.6rem;
+    }
+}
+.post-container_text-input {
+    width: 328px;
+    height: 54px;
+    border: 1px solid #d0cfcf;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.position-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    p {
+        margin-bottom: 11px;
+    }
+    .position {
+        align-self: flex-start;
+
+        label {
+            font-size: 1.6rem;
+            padding-left: 32px;
+            position: relative;
+            cursor: pointer;
+            &::before {
+                content: "";
+                border: 1px solid #d0cfcf;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                left: 0;
+                transition: 0.1s;
+            }
+            &::after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #f8f8f8;
+                position: absolute;
+                left: 6px;
+                top: 6px;
+                transition: 0.1s;
+            }
+        }
+        [type="radio"]:checked + label::before {
+            border: 1px solid var(--secondary);
+        }
+        [type="radio"]:checked + label::after {
+            background: var(--secondary);
+        }
+        input {
+            display: none;
+        }
+    }
+}

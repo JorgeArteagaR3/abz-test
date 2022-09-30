@@ -1,22 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 62.5%;
 }
-:root{
-    --primary: #F4E041;
-    --secondary: #00BDD3;
+:root {
+    --primary: #f4e041;
+    --secondary: #00bdd3;
 }
 
-body{
-    background: #F8F8F8;
-    font-family: 'Nunito', sans-serif;
-
+body {
+    background: #f8f8f8;
+    font-family: "Nunito", sans-serif;
 }
-.title{
+.App {
+    width: 360px;
+    margin: 0 auto;
+}
+.title {
     font-size: 4rem;
+    text-align: center;
+}
+.inactive {
+    display: none;
 }
 
 // Components
@@ -24,6 +31,7 @@ body{
 @import "./components/hero";
 @import "./components//getsection";
 @import "./components/user";
+@import "./components/postsection";
 //UI
 @import "./components/button";
 

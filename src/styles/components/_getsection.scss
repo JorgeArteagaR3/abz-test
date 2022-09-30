@@ -1,26 +1,25 @@
-.get-section{
+.get-section {
     padding: 0 16px 0 16px;
     text-align: center;
     padding-top: 140px;
     text-align: center;
-    h2{
-       color:  #000000DE;
-       margin-bottom: 5rem;
+    h2 {
+        color: #000000de;
+        margin-bottom: 5rem;
     }
-    p{
+    p {
         font-size: 1.6rem;
-        color: #000000DE ;
+        color: #000000de;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-   .people-container{
-    display: grid;
-    grid-template-columns: 100%;
-    gap: 20px;
-    margin-bottom: 50px;
-   }
-   .btn--large{
-    width: 120px;
-   }
-    
+    .people-container {
+        display: grid;
+        grid-template-columns: 100%;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+    .btn--large {
+        width: 120px;
+    }
 }
