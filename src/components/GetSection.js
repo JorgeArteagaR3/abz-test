@@ -26,8 +26,6 @@ const GetSection = () => {
     useEffect(() => {
         if (page <= totalPages) {
             getUsers();
-
-            console.log(lastpage);
         }
     }, [page]);
 
