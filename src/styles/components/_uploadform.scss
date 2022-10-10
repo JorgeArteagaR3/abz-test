@@ -1,10 +1,13 @@
 form {
+    max-width: 380px;
+    margin: 0 auto;
     .post-container__data {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 50px;
     }
-    .phone-tip {
+    .input-tip {
         font-size: 1.2rem;
         text-align: left;
         width: 100%;
@@ -12,14 +15,16 @@ form {
         padding-left: 16px;
         margin-top: 5px;
         color: #7e7e7e;
-        margin-bottom: 25px;
+    }
+    .text-error {
+        color: #cb3d40;
     }
 }
 p {
     font-size: 1.6rem;
 }
 .post-container_text-input {
-    width: 328px;
+    width: 100%;
     height: 54px;
     border: 1px solid #d0cfcf;
     padding-left: 16px;
@@ -34,6 +39,7 @@ p {
 }
 .input-container {
     position: relative;
+    width: 100%;
     .input-label {
         font-size: 1.2rem;
         position: absolute;
@@ -47,10 +53,17 @@ p {
         }
     }
 }
+.input-error {
+    border: 2px solid #cb3d40 !important;
+}
+
 .position-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
     gap: 20px;
+    margin-top: 25px;
     margin-bottom: 50px;
     p {
         margin-bottom: 11px;
@@ -112,6 +125,8 @@ p {
             margin: 0;
             font-size: 1.6rem;
             padding-left: 16px;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
         label {
             display: flex;
@@ -120,13 +135,14 @@ p {
             height: 100%;
             align-items: center;
             justify-content: center;
-            border-radius: 4px 0 0 4px;
-            width: 83px;
+            border-radius: 1px 0 0 1px;
+            width: 83px !important;
             color: #000000de;
             font-size: 1.6rem;
         }
-        input {
-            display: none;
-        }
+    }
+
+    input {
+        display: none;
     }
 }

@@ -15,7 +15,7 @@ body {
     font-family: "Nunito", sans-serif;
 }
 .App {
-    width: 360px;
+    max-width: 1170px;
     margin: 0 auto;
 }
 .title {
@@ -33,7 +33,7 @@ body {
 @import "./components/user";
 @import "./components/postsection";
 @import "./components/uploadform";
-//UI
+@import "./components/spinner"; //UI
 @import "./components/button";
 
 //Screens

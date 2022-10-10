@@ -9,7 +9,13 @@
     height: 34px;
     width: 100px;
     border-radius: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
     cursor: pointer;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
     &:hover {
         background: #ffe302;
     }

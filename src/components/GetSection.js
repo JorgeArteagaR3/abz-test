@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { User } from "./User";
 import Defaultphoto from "../assets/defaultphoto.svg";
+import { Spinner } from "./Spinner";
 
 const GetSection = () => {
     let [page, setPage] = useState(1);
     const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [totalPages, setTotalPages] = useState(2);
-    const placeholderUrl =
-        "https://frontend-test-assignment-api.abz.agency/images/placeholders/placeholder.png";
+
+    useEffect(() => {
+        if (page <= totalPages) {
+            getUsers();
+        }
+    }, [page]);
+
     const getUsers = () => {
+        setIsLoading(true);
         fetch(
             `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`
         )
@@ -18,19 +26,14 @@ const GetSection = () => {
             .then((data) => {
                 setUsers(users.concat(data.users));
                 setTotalPages(data.total_pages);
+                setIsLoading(false);
             });
-
-        return;
     };
+
     let lastpage = page === totalPages;
-    useEffect(() => {
-        if (page <= totalPages) {
-            getUsers();
-        }
-    }, [page]);
 
     return (
-        <section className="get-section">
+        <section className="get-section" id="Users">
             <h2 className="title">Working with GET request</h2>
             <article className="people-container">
                 {users.map((user) => (
@@ -38,15 +41,12 @@ const GetSection = () => {
                         key={user.id}
                         name={user.name}
                         email={user.email}
-                        img={
-                            user.photo === placeholderUrl
-                                ? Defaultphoto
-                                : user.photo
-                        }
+                        img={user.photo}
                         number={user.phone}
                         position={user.position}
                     />
                 ))}
+                {isLoading ? <Spinner /> : ""}
             </article>
             <button
                 children

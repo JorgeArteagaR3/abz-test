@@ -1,25 +1,53 @@
 .get-section {
     padding: 0 16px 0 16px;
     text-align: center;
-    padding-top: 140px;
-    text-align: center;
+    position: relative;
+
     h2 {
         color: #000000de;
         margin-bottom: 5rem;
     }
+
     p {
         font-size: 1.6rem;
         color: #000000de;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
+
     .people-container {
         display: grid;
         grid-template-columns: 100%;
         gap: 20px;
         margin-bottom: 50px;
     }
+
     .btn--large {
         width: 120px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .get-section {
+        padding: 0 32px;
+    }
+    .get-section .people-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .get-section {
+        padding: 0 60px;
+    }
+    .get-section .people-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 29px;
+    }
+}
+@media only screen and (min-width: 1170px) {
+    .get-section {
+        padding: 0px;
+    }
+    .get-section .people-container {
+        gap: 30px;
     }
 }

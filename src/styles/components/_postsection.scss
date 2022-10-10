@@ -1,13 +1,25 @@
 .post-container {
     padding: 140px 16px 0 16px;
+    position: relative;
     h2 {
         margin-bottom: 50px;
     }
 }
 .sign-up-btn-container {
     display: flex;
+    width: 100%;
     margin-bottom: 100px;
     .sign-up-btn {
         margin: 0 auto;
     }
+}
+.success-container {
+    display: flex;
+    margin-bottom: 100px;
+    height: 290px;
+}
+.success-image {
+    margin: 0 auto;
+    float: center;
+    text-align: center;
 }

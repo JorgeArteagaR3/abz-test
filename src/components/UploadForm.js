@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "./Input";
 
-const UploadForm = () => {
+const UploadForm = ({ setIsRegistered, setIsLoading }) => {
     const [user, setUser] = useState({
         name: "",
         email: "",
         phone: "",
         position_id: "",
+        photo: "",
+    });
+    const [userError, setUserError] = useState({
+        name: "",
+        email: "",
+        phone: "",
         photo: "",
     });
     const [positions, setPositions] = useState([]);
@@ -16,11 +22,6 @@ const UploadForm = () => {
         getPositions();
         getToken();
     }, []);
-
-    useEffect(() => {
-        console.log(user);
-        console.log(myToken);
-    }, [user, myToken]);
 
     function getFormData(object) {
         const formData = new FormData();
@@ -50,25 +51,51 @@ const UploadForm = () => {
         setUser((prev) => ({ ...prev, [name]: value }));
     };
 
-    const signUp = () => {
+    const signUp = async () => {
         const formData = getFormData(user);
-        console.log(formData.get("email"));
+
         try {
-            fetch(
-                "https://frontend-test-assignment-api.abz.agency/api/v1/users//",
+            setIsLoading(true);
+            const res = await fetch(
+                "https://frontend-test-assignment-api.abz.agency/api/v1/users",
                 {
                     method: "POST",
                     body: formData,
                     headers: {
-                        "Content-Type": "multipart/form-data",
                         Token: myToken,
                     },
                 }
-            )
-                .then((res) => res.json())
-                .then((data) => console.log(data));
+            );
+            const data = await res.json();
+            console.log(data);
+            if (res.status === 500) {
+                setIsLoading(false);
+                return;
+            }
+            if (data.success) {
+                setIsRegistered(true);
+                setIsLoading(false);
+            }
+            if (!data.success) {
+                setIsLoading(false);
+                setIsRegistered(false);
+                const failsMessages = data.fails;
+                const keys = Object.keys(data.fails);
+                console.log(data.fails);
+
+                if (!data.fails) return;
+
+                keys.forEach((key) => {
+                    setUserError((prev) => ({
+                        ...prev,
+                        [key]: failsMessages[key][0],
+                    }));
+                });
+            }
         } catch (error) {
+            setIsLoading(false);
             console.log(error);
+            setUserError();
         }
     };
 
@@ -84,29 +111,62 @@ const UploadForm = () => {
                     name="name"
                     value={user.name}
                     placeholder="Your Name"
+                    userError={userError?.name}
                     handleChange={(e) => {
                         handleChange(e.target.name, e.target.value);
                     }}
-                />
+                >
+                    <span
+                        className={
+                            userError?.name
+                                ? "input-tip text-error"
+                                : "input-tip"
+                        }
+                    >
+                        {!userError?.name ? "" : userError.name}
+                    </span>
+                </Input>
                 <Input
                     type="email"
                     name="email"
                     value={user.email}
                     placeholder="Email"
+                    userError={userError?.email}
                     handleChange={(e) => {
                         handleChange(e.target.name, e.target.value);
                     }}
-                />
+                >
+                    <span
+                        className={
+                            userError?.email
+                                ? "input-tip text-error"
+                                : "input-tip"
+                        }
+                    >
+                        {!userError?.email ? "" : userError.email}
+                    </span>
+                </Input>
                 <Input
                     type="tel"
                     name="phone"
                     value={user.phone}
                     placeholder="Phone"
+                    userError={userError?.phone}
                     handleChange={(e) => {
                         handleChange(e.target.name, e.target.value);
                     }}
                 >
-                    <span className="phone-tip">+38 (XXX) XXX - XX - XX</span>
+                    <span
+                        className={
+                            userError?.phone
+                                ? "input-tip text-error"
+                                : "input-tip"
+                        }
+                    >
+                        {!userError?.phone
+                            ? "+38 (XXX) XXX - XX - XX"
+                            : userError.phone}
+                    </span>
                 </Input>
             </div>
             <div className="position-container">
@@ -127,19 +187,37 @@ const UploadForm = () => {
                 ))}
             </div>
             <div className="upload-container">
-                <div className="upload-container__upload">
-                    <label htmlFor="uploadImg">Upload</label>
+                <div
+                    className={
+                        userError?.photo
+                            ? "upload-container__upload input-error"
+                            : "upload-container__upload"
+                    }
+                >
+                    <label
+                        className={userError?.photo && "input-error"}
+                        htmlFor="uploadImg"
+                    >
+                        Upload
+                    </label>
 
-                    <input
-                        onChange={(e) => {
-                            handleChange(e.target.name, e.target.files[0]);
-                        }}
-                        id="uploadImg"
-                        type="file"
-                        name="photo"
-                    />
-                    <span>{user.photo.name || "Upload your photo"}</span>
+                    <span>{user?.photo?.name || "Upload your photo"}</span>
                 </div>
+                <span
+                    className={
+                        userError?.photo ? "input-tip text-error" : "input-tip"
+                    }
+                >
+                    {userError?.photo ? userError.photo : ""}
+                </span>
+                <input
+                    onChange={(e) => {
+                        handleChange(e.target.name, e.target.files[0]);
+                    }}
+                    id="uploadImg"
+                    type="file"
+                    name="photo"
+                />
             </div>
             <div className="sign-up-btn-container">
                 <button className="btn sign-up-btn" onClick={signUp}>
