@@ -18,28 +18,31 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-
-            p {
-                position: absolute;
-                margin-left: auto;
-                margin-right: auto;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 16px;
-                overflow: visible;
-                background: rgba(0, 0, 0, 0.87);
-                border-radius: 4px;
-                height: 32px;
-                width: 500px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                z-index: 10;
-            }
+        }
+        .info-text:hover .tooltip {
+            opacity: 1;
         }
     }
+}
+.tooltip {
+    position: absolute;
+    font-size: 1.2rem;
+    background: black;
+    color: white;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -35px;
+    z-index: 3;
+    border-radius: 4px;
+    opacity: 1;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
 }
 .info-contain {
     position: relative;
@@ -48,5 +51,8 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+    }
+    .name:hover .tooltip {
+        opacity: 1;
     }
 }

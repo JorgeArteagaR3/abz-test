@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import DefaultPhoto from "../assets/defaultphoto.svg";
 const User = ({ img, position, email, number, name }) => {
     const [photo, setPhoto] = useState(img);
-    const [isVisible, setIsVisible] = useState(false);
-    const [textTip, setTextTip] = useState("");
-    const handleChange = (e) => {
-        setTextTip(e.target.textContent);
 
-        if (textTip.length >= 25) {
-            setIsVisible(true);
-        }
-    };
     return (
         <div className="user-card">
             <img
@@ -18,44 +10,29 @@ const User = ({ img, position, email, number, name }) => {
                 onError={() => {
                     setPhoto(DefaultPhoto);
                 }}
-                alt=""
+                alt="person"
             />
 
             <div className="info-contain">
-                <p
-                    className="name"
-                    onMouseEnter={handleChange}
-                    onMouseLeave={() => {
-                        setIsVisible(false);
-                    }}
-                >
+                <p className="name">
                     {name}
+                    {email.length >= 25 && (
+                        <span className="tooltip">{email}</span>
+                    )}
                 </p>
             </div>
             <div className="info">
                 <p className="info-text">{position}</p>
                 <div className="info-contain">
-                    <p
-                        className="info-text"
-                        onMouseEnter={handleChange}
-                        onMouseLeave={() => {
-                            setIsVisible(false);
-                        }}
-                    >
+                    <p className="info-text">
                         {email}
-                        {isVisible && <p>{textTip}</p>}
+                        {email.length >= 25 && (
+                            <span className="tooltip">{email}</span>
+                        )}
                     </p>
                 </div>
                 <div className="info-contain">
-                    <p
-                        className="info-text"
-                        onMouseEnter={handleChange}
-                        onMouseLeave={() => {
-                            setIsVisible(false);
-                        }}
-                    >
-                        {number}
-                    </p>
+                    <p className="info-text">{number}</p>
                 </div>
             </div>
         </div>
